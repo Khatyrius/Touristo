@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30204.135
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TouristoMVC", "TouristoMVC\TouristoMVC.csproj", "{4A1D2E9F-6DE4-445E-82B8-B3478E676C09}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4A1D2E9F-6DE4-445E-82B8-B3478E676C09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A1D2E9F-6DE4-445E-82B8-B3478E676C09}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A1D2E9F-6DE4-445E-82B8-B3478E676C09}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A1D2E9F-6DE4-445E-82B8-B3478E676C09}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1F2F79FA-8D8C-4E72-B555-D11432742E69}
+	EndGlobalSection
+EndGlobal

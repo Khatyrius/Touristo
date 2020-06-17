@@ -1,0 +1,72 @@
+﻿@model IEnumerable<TouristoMVC.Models.City>
+
+@{
+    ViewBag.Title = "View";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Cities</h2>
+
+<p>
+    @Html.ActionLink("Add", "New")
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            Country
+        </th>
+        <th>
+            Attractions
+        </th>
+        <th>
+            Options
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.id)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.country.name)
+    </td>
+    <td>
+        @Html.ActionLink(
+                    "Attractions",                             //linkText
+                    "ViewAttractions",                         //actionName
+                    "Cities",                              //controlerName
+                    new
+                         {
+                        cityId = item.id,
+                    },                                      //routeValues
+                    null                                    //htmlAttributes
+             )
+    </td>
+    <td>
+        @Html.ActionLink("Edit",
+                 "Edit",
+                 "Cities",
+                 new { cityId = item.id },
+                 null) |
+
+        @Html.ActionLink("Delete",
+                         "DeleteCity",
+                         "Cities",
+                         new { cityId = item.id },
+                         null)
+    </td>
+</tr>
+}
+
+</table>

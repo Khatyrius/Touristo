@@ -1,0 +1,35 @@
+﻿@model IEnumerable<TouristoMVC.Models.Location>
+
+@{
+    ViewBag.Title = "FinalizeMap";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    TouristoMVC.Models.Location location = (TouristoMVC.Models.Location)ViewData["Location"];
+}
+<h2>Final Map</h2>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<div id="googleMap" style="height:500px;width:100%;"></div>
+<script>
+        function myMap() {
+            var myCenter = new google.maps.LatLng(@location.Langtitude, @location.Longtitude);
+            var mapProp = { center: myCenter, zoom: 12, scrollwheel: true, draggable: true, mapTypeId: google.maps.MapTypeId.ROADMAP };
+            var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+            var myLocation = new google.maps.Marker({ position: myCenter });
+
+            var info = new google.maps.InfoWindow({
+                content: "You are HERE!"
+            })
+            myLocation.setMap(map);
+            myLocation.addListener('click', function () {
+        info.open(map, myLocation)
+            })
+            @foreach (var item in Model)
+            {
+                <text>new google.maps.Marker({ position: new google.maps.LatLng('@item.Langtitude', '@item.Longtitude')}).setMap(map);</text>
+            }
+    };
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4AYPMmFrJaGsxC6bwhMN8Njm-IHMglwg&callback=myMap"></script>

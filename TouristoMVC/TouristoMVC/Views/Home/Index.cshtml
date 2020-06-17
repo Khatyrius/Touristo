@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+    <div class="row text-center">
+        <h3>WELCOME TO TOURISTO</h3>
+
+        <h4>A site where</h4></br>
+
+        <img src="~/images/1478944045_unclesam-we-want-you.jpg" style="width:300px; height:300px" /></img><br />
+        <H4>to explore the wolrd. And we created it to help you with it.</H4></br>
+
+        @using (Html.BeginForm("Index", "Map", FormMethod.Post, new { @class = "ui large form" }))
+        {
+             <input type="submit" value="LET'S GO" class="btn btn-success btn-circle btn-xl" style="width:200px;height:200px; border-radius:100px" />
+        }
+    </div>

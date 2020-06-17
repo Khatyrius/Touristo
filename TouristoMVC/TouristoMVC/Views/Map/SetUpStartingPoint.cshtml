@@ -1,0 +1,51 @@
+﻿@model TouristoMVC.Models.Location
+
+@{
+    ViewBag.Title = "SetUpStartingPoint";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{ 
+                TouristoMVC.Models.Location location = new TouristoMVC.Models.Location()
+                {
+                    Address = Model.Address,
+                    Langtitude = Model.Langtitude,
+                    Longtitude = Model.Longtitude
+                };
+}
+<h2>Is this your starting location?</h2>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<div id="googleMap" style="height:500px;width:100%;"></div>
+<script>
+        function myMap() {
+            var myCenter = new google.maps.LatLng(@Model.Langtitude, @Model.Longtitude);
+            var mapProp = { center: myCenter, zoom: 12, scrollwheel: true, draggable: true, mapTypeId: google.maps.MapTypeId.ROADMAP };
+            var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+            var myLocation = new google.maps.Marker({ position: myCenter });
+
+            var info = new google.maps.InfoWindow({
+                content: "You are HERE!"
+            })
+            myLocation.setMap(map);
+            myLocation.addListener('click', function () {
+        info.open(map, myLocation)
+            })
+    };
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4AYPMmFrJaGsxC6bwhMN8Njm-IHMglwg&callback=myMap"></script>     
+
+<div>
+    @using (Html.BeginForm("Index", "Map", FormMethod.Post, new { @class = "ui large form" }))
+    {
+        <input type="submit" value="Go Back" class="btn  btn-default" />
+    }
+
+    @using (Html.BeginForm("SelectCountry", "Map", FormMethod.Post, new { @class = "ui large form" }))
+    {
+        <input type="hidden" name="address" value="@location.Address" />
+        <input type="hidden" name="lang" value="@location.Langtitude" />
+        <input type="hidden" name="long" value="@location.Longtitude" />
+        <input type="submit" value="Go Forward" class="btn  btn-default" />
+    }
+</div>

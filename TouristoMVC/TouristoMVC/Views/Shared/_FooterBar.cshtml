@@ -1,0 +1,43 @@
+﻿@{
+    var cookie = Request.Cookies["Bearer"];
+    string token;
+
+    if (cookie != null)
+    {
+        token = cookie.Value.ToString();
+    }
+    else
+    {
+        token = string.Empty;
+    }
+
+}
+    <div class="navbar navbar-inverse navbar-fixed-bottom">
+        <div class="container">
+            <div class="navbar-header">
+
+                @Html.ActionLink("Touristo", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    @if (string.IsNullOrEmpty(token))
+                    {
+                        <li>@Html.ActionLink("Admin Panel", "LoginUser", "Users")</li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Countries", "Index", "Countries")</li>
+                        <li>@Html.ActionLink("Cities", "Index", "Cities")</li>
+                        <li>@Html.ActionLink("Attractions", "Index", "Attractions")</li>
+                        <li>@Html.ActionLink("Users", "Index", "Users")</li>
+                        <li>@Html.ActionLink("Logout", "Logout", "Users")</li>
+                    }
+                </ul>
+            </div>
+            <br />
+            <div class="text-center" style="color:white">
+                © 2020 - Project .NET <a href="https://www.linkedin.com/in/bartosz-musielak/">Bartosz Musielak</a> && <a href="https://www.linkedin.com/in/szymon-stach%C3%B3w-b622901a4/">Szymon Stachów</a>
+            </div>
+        </div>
+    </div>

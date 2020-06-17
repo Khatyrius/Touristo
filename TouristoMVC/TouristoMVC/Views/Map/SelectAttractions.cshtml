@@ -1,0 +1,24 @@
+﻿@model TouristoMVC.Models.Attraction
+@{
+    ViewBag.Title = "SelectAttractions";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    var attractions = (List<SelectListItem>)ViewData["AttractionList"];
+    var location = (TouristoMVC.Models.Location)ViewData["Location"];
+}
+
+<h2>Select a attractions you would like to see</h2>
+@using (Html.BeginForm("FinalizeMap", "Map", FormMethod.Post, new { @class = "ui large form" }))
+{
+    <div class="form-group">
+        @Html.DropDownListFor(Model => Model.id, attractions, new { @class = "form-control chosen-select", @multiple = true})
+    </div>
+
+    <div class="form-group">
+        <input type="hidden" name="address" value="@location.Address" />
+        <input type="hidden" name="lang" value="@location.Langtitude" />
+        <input type="hidden" name="long" value="@location.Longtitude" />
+        <input type="submit" value="Forward" class="btn btn-default" />
+    </div>
+}

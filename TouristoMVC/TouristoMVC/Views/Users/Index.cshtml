@@ -1,0 +1,46 @@
+﻿@model IEnumerable<TouristoMVC.Models.User>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Users</h2>
+
+<table class="table table-bordered table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.username)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.role)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.username)
+        </td>
+            @if(item.role.Equals("Admin", StringComparison.InvariantCultureIgnoreCase))
+            {
+                <td>
+                    Admin
+                </td>
+            }else{
+                <td>
+                    Blocked
+                </td>
+            }
+        <td>
+            @Html.ActionLink("Delete",
+                            "Delete",
+                            "User",
+                            new { userId = item.id },
+                            null)
+        </td>
+    </tr>
+}
+
+</table>
